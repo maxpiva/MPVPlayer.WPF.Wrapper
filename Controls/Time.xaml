@@ -1,0 +1,10 @@
+﻿<UserControl x:Class="NutzCode.MPVPlayer.WPF.Wrapper.Controls.Time"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NutzCode.MPVPlayer.WPF.Wrapper.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="48" d:DesignWidth="300">
+    <Label x:Name="time" Content="00:00" FontFamily="{Binding FontFamily, RelativeSource={RelativeSource AncestorType={x:Type local:Time}}}" FontWeight="{Binding FontWeight, RelativeSource={RelativeSource AncestorType={x:Type local:Time}}}" FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType={x:Type local:Time}}}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:Time}}}" HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment ="{Binding Alignment, RelativeSource={RelativeSource AncestorType={x:Type local:Time}}}"/>
+</UserControl>

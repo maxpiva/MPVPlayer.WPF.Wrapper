@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="NutzCode.MPVPlayer.WPF.Wrapper.Player"           
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wrapper="clr-namespace:NutzCode.MPVPlayer.WPF.Wrapper"
+        xmlns:adorner="clr-namespace:HwndExtensions.Adorner"
+        xmlns:controls="clr-namespace:NutzCode.MPVPlayer.WPF.Wrapper.Controls"
+        mc:Ignorable="d" d:DesignHeight="480" d:DesignWidth="640" Loaded="UserControl_Loaded" 
+        >
+    <adorner:HwndAdornerManager>
+        <wrapper:NativePresenter x:Name="VideoPlayer"  >
+            <wrapper:NativePresenter.Adornment>
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Image x:Name="Preview" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                <controls:ControlBar Foreground="White" x:Name="Bar" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto" Height="Auto"/>
+                <controls:Loading x:Name="Loading" Foreground="#0080D0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="100"/>
+                </Grid>
+            </wrapper:NativePresenter.Adornment>
+        </wrapper:NativePresenter>
+        </adorner:HwndAdornerManager>
+ </UserControl>

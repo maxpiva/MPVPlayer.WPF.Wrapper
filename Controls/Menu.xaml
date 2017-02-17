@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="NutzCode.MPVPlayer.WPF.Wrapper.Controls.Menu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NutzCode.MPVPlayer.WPF.Wrapper"
+             xmlns:controls="clr-namespace:NutzCode.MPVPlayer.WPF.Wrapper.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="240" d:DesignWidth="48" Foreground="White" 
+       >
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical" >
+        <StackPanel x:Name="top" Orientation="Vertical" Background="{Binding BackgroundColor, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}">
+            <controls:Button x:Name="Exit" Visibility="{Binding HasExit, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" PaddingRelation="{Binding PaddingRelation, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" MouseOverColor="{Binding MouseOverColor, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" Image="{Binding ExitImage, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}"/>
+            <controls:Button x:Name="Audio" Visibility="{Binding HasAudios, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" PaddingRelation="{Binding PaddingRelation, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" MouseOverColor="{Binding MouseOverColor, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" Image="{Binding AudioImage, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}"/>
+            <controls:Button x:Name="Subs" Visibility="{Binding HasSubs, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" PaddingRelation="{Binding PaddingRelation, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" MouseOverColor="{Binding MouseOverColor, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" Image="{Binding SubtitleImage, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}"/>
+            <controls:Button x:Name="Config" PaddingRelation="{Binding PaddingRelation, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}},NotifyOnSourceUpdated=True}" MouseOverColor="{Binding MouseOverColor, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}},NotifyOnSourceUpdated=True}" Image="{Binding ConfigImage, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}},NotifyOnSourceUpdated=True}"/>
+     </StackPanel>
+        <controls:Button x:Name="Open" Background="{Binding BackgroundColor, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" PaddingRelation="{Binding PaddingRelation, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" MouseOverColor="{Binding MouseOverColor, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" Image="{Binding MenuImage, RelativeSource={RelativeSource AncestorType={x:Type controls:Menu}}}" />
+    </StackPanel>
+</UserControl>
