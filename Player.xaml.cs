@@ -41,7 +41,7 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
         private int _lastpos = -1;
         private string _lastsid = "auto";
         private bool _mSingleClick;
-        private bool _pausedforcache;
+        private bool _loading;
         private int _prevvolume;
         private string _sshot;
         private Timer _clickTimer;
@@ -196,7 +196,6 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
                 {
                     _lastpoint = pn;
                     var bp = BorderPosition(pn);
-                    Debug.WriteLine("Window State: " + e.Device + " pos: " + pn.X + " " + pn.Y);
                     if (bp != _lastpos)
                     {
                         _lastpos = bp;
@@ -489,36 +488,45 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
             SettingsChange?.Invoke(pl);
         }
 
+
         private void SecondTimer(object obj)
         {
-            if (MPVInterop.Instance.GetProperty("paused-for-cache") == "yes")
+            bool shouldDispatch = false;
+            Visibility loadingVis = Visibility.Visible;
+            string buffering = string.Empty;
+            bool cachepause = MPVInterop.Instance.GetProperty("paused-for-cache") == "yes";
+            bool seekpause= MPVInterop.Instance.GetProperty("seeking") == "yes";
+            if ((!_loading && cachepause) || (!_loading && seekpause))
             {
-                _buffering = MPVInterop.Instance.GetDoubleProperty("cache-buffering-state");
-                if (!_pausedforcache)
-                    Dispatcher.Invoke(() =>
-                    {
-                        Loading.Visibility = Visibility.Visible;
-                        Loading.Percentage = _buffering + "%";
-                    });
-                _pausedforcache = true;
+                _inc = 0;
+                _loading = true;
             }
-            else if (_pausedforcache)
+            if (!seekpause && !cachepause)
             {
-                _pausedforcache = false;
-                Dispatcher.Invoke(() => { Loading.Visibility = Visibility.Collapsed; });
+                _loading = false;
+                loadingVis = Visibility.Collapsed;
+                shouldDispatch = true;
             }
             if (_inc % 10 == 0)
+            {
+
+                shouldDispatch = true;
+                if (_loading && cachepause)
+                    buffering = MPVInterop.Instance.GetDoubleProperty("cache-buffering-state") + "%";
+                _inc = 0;
+            }
+            _inc++;
+
+            if (shouldDispatch)
             {
                 Dispatcher.Invoke(() =>
                 {
                     if (Duration != 0)
-                        Bar.Position = (long) Time;
-                    if (_pausedforcache)
-                        Loading.Percentage = _buffering + "%";
+                        Bar.Position = (long)Time;
+                    Loading.Visibility = loadingVis;
+                    Loading.Percentage = buffering;
                 });
-                _inc = 0;
-            }
-            _inc++;
+            }       
         }
 
         private void Player_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -720,14 +728,14 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
         {
             Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, (Action) delegate
             {
-                var rel = width /  height;
-                var currentrel =  VideoPlayer.ActualWidth / VideoPlayer.ActualHeight;
+                double rel = (double)width /  (double)height;
+                double currentrel =  VideoPlayer.ActualWidth / VideoPlayer.ActualHeight;
                 if (Math.Abs(currentrel - rel) > double.Epsilon)
                 {
-                    var h = VideoPlayer.ActualWidth / rel;
+                    double h = VideoPlayer.ActualWidth / rel;
                     if (h <= VideoPlayer.ActualHeight)
                     {
-                        var delta = VideoPlayer.ActualHeight - h;
+                        double delta = VideoPlayer.ActualHeight - h;
                         if (_window != null)
                         {
                             _window.Height = ActualHeight - delta;
@@ -736,8 +744,8 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
                     }
                     else
                     {
-                        var w = VideoPlayer.ActualHeight * rel;
-                        var delta = VideoPlayer.ActualWidth - w;
+                        double w = VideoPlayer.ActualHeight * rel;
+                        double delta = VideoPlayer.ActualWidth - w;
                         if (_window != null)
                         {
                             _window.Width = _window.ActualWidth - delta;
