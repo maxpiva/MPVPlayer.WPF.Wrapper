@@ -522,7 +522,10 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
                 Dispatcher.Invoke(() =>
                 {
                     if (Duration != 0)
-                        Bar.Position = (long)Time;
+                    {
+                        Bar.Position = (long) Time;
+                        PositionChanged?.Invoke((long) Time);
+                    }
                     Loading.Visibility = loadingVis;
                     Loading.Percentage = buffering;
                 });
@@ -707,6 +710,7 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
             {
                 Bar.IsPlaying = false;
                 PlayStateChange(false);
+                PositionChanged?.Invoke((long)Time);
             });
         }
 

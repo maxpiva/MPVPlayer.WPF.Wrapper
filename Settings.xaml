@@ -71,7 +71,7 @@
                                     <ComboBoxItem Content="Huge" Tag="2" Background="#303030" Foreground="White"/>
                                 </ComboBox>
                                 <Label Content="1st Preferred Language :" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White" FontFamily="Segoe" Grid.Row="2" Grid.Column="0"></Label>
-                                <ComboBox Margin="2,3,0,3" x:Name="SubsPref1" Grid.Row="2" Grid.Column="1" Background="#303030" Foreground="White" SelectionChanged="SubsPref1_SelectionChanged">
+                                <ComboBox Margin="2,3,0,3" x:Name="SubsPref1" Grid.Row="2" Grid.Column="1" SelectionChanged="SubsPref1_SelectionChanged">
                                     <ComboBox.Resources>
                                         <!-- color of ComboBoxItem -->
                                         <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#505050" />
@@ -165,7 +165,7 @@
                                 <Label Content="Exclusive Mode :" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" FontFamily="Segoe" Grid.Row="5" Grid.Column="0"></Label>
                                 <CheckBox x:Name="Exclusive" VerticalAlignment="Center" Grid.Row="5" Grid.Column="1" Checked="Exclusive_Checked"/>
                                 <Label Content="1st Preferred Language :" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" FontFamily="Segoe" Grid.Row="6" Grid.Column="0"></Label>
-                                <ComboBox Margin="2,3,0,3" x:Name="LanguagePref1" Grid.Row="6" Grid.Column="1" Background="#303030" Foreground="White" SelectionChanged="LanguagePref1_SelectionChanged">
+                                <ComboBox Margin="2,3,0,3" x:Name="LanguagePref1" Grid.Row="6" Grid.Column="1" SelectionChanged="LanguagePref1_SelectionChanged">
                                     <ComboBox.Resources>
                                         <!-- color of ComboBoxItem -->
                                         <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#505050" />
@@ -181,7 +181,6 @@
                                         <!-- Mouse over color of ComboBoxItem -->
                                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#0080D0" />
                                     </ComboBox.Resources>
-                                    <ComboBoxItem Content="Auto" Background="#303030" Foreground="White" />
                                 </ComboBox>
                             </Grid>
                         </GroupBox>

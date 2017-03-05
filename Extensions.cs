@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 
 namespace NutzCode.MPVPlayer.WPF.Wrapper
@@ -56,8 +57,10 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
         }
         public static void GenerateLanguages(this ComboBox box)
         {
-            foreach (ComboBoxItem b in Models.Language.Languages.Select(a => a.Name).Distinct().Select(a => new ComboBoxItem { Content = a, Tag = a }))
+            foreach (ComboBoxItem b in Models.Language.Languages.Select(a => new ComboBoxItem { Content = a.Name+" ("+a.Code3+")", Tag = a.Code3 }))
             {
+                b.Background = new SolidColorBrush(Color.FromRgb(0x30, 0x30, 0x30));
+                b.Foreground = new SolidColorBrush(Colors.White);
                 box.Items.Add(b);
             }
         }

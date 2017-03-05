@@ -72,12 +72,12 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
             SubsPref2.GenerateLanguages();
             LanguagePref1.GenerateLanguages();
             LanguagePref2.GenerateLanguages();
-            List<string> langs = _settings.PreferredAudios.GetLanguages();
+            List<string> langs = _settings.PreferredAudios.Split(',').Select(a => a.Trim()).ToList();
             if (langs.Count > 0)
                 LanguagePref1.SelectedItem = LanguagePref1.GetItemByTag(langs[0]);
             if (langs.Count > 1)
                 LanguagePref2.SelectedItem = LanguagePref2.GetItemByTag(langs[1]);
-            langs = _settings.PreferredSubtitles.GetLanguages();
+            langs = _settings.PreferredSubtitles.Split(',').Select(a => a.Trim()).ToList();
             if (langs.Count > 0)
                 SubsPref1.SelectedItem = SubsPref1.GetItemByTag(langs[0]);
             if (langs.Count > 1)
