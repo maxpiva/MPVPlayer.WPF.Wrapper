@@ -58,7 +58,6 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
         public Player()
         {
             InitializeComponent();
-
             Bar.PlayStateChanged += Bar_PlayStateChanged;
             Bar.PositionChanged += Bar_PositionChanged;
             Bar.VolumeChanged += Bar_VolumeChanged;
@@ -143,8 +142,8 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
         private void Window_Closed(object sender, EventArgs e)
         {
             Stop();
-            MPVInterop.Instance.Finish();
-            VideoPlayer.Dispose();
+            MPVInterop.Instance?.Finish();
+            VideoPlayer?.Dispose();
         }
 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
@@ -617,8 +616,8 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
             else
             {
                 Stop();
-                MPVInterop.Instance.Finish();
-                VideoPlayer.Dispose();
+                MPVInterop.Instance?.Finish();
+                VideoPlayer?.Dispose();
             }
         }
 
@@ -762,13 +761,13 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
 
         ~Player()
         {
-            MPVInterop.Instance.Finish();
-            VideoPlayer.Dispose();
+            MPVInterop.Instance?.Finish();
+            VideoPlayer?.Dispose();
         }
 
         private void OnShutdownStarted(object sender, EventArgs e)
         {
-            MPVInterop.Instance.Finish();
+            MPVInterop.Instance?.Finish();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
