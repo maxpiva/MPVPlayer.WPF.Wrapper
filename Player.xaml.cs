@@ -53,7 +53,8 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
         public ObservableCollection<Stream> Subtitles = new ObservableCollection<Stream>();
         public ObservableCollection<Stream> Videos = new ObservableCollection<Stream>();
         private Window _window;
-
+        private UIElement _topControl;
+        private UIElement _playControl;
 
         public Player()
         {
@@ -116,6 +117,7 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
 
         public void SetTopControl(UIElement topcontrol)
         {
+            _topControl = topcontrol;
             topcontrol.PreviewMouseLeftButtonDown += Topcontrol_PreviewMouseLeftButtonDown;
             topcontrol.MouseMove += Topcontrol_MouseMove;
             topcontrol.MouseDown += Topcontrol_MouseDown;
@@ -144,6 +146,7 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
             Stop();
             MPVInterop.Instance?.Finish();
             VideoPlayer?.Dispose();
+            _playControl = null;
         }
 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
@@ -333,7 +336,16 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
                 Preview.Source = new BitmapImage(new Uri(p.PreviewImageSourceUri));
                 Preview.Visibility = Visibility.Visible;
             }
-            MPVInterop.Instance.Initialize(VideoPlayer);
+
+            if (_topControl!=_playControl)
+            {
+                MPVInterop.Instance.Initialize(VideoPlayer);
+                _playControl = _topControl;
+            }
+            else
+            {
+                Stop();
+            }
             _settings = null;
             SendSettings(settings);
             _settings = settings;
@@ -353,11 +365,14 @@ namespace NutzCode.MPVPlayer.WPF.Wrapper
             }
 
 
+            StartWatcher();
             if (!p.Autoplay)
                 MPVInterop.Instance.MPVPause();
-            StartWatcher();
+            else
+                MPVInterop.Instance.MPVPlay();
             Bar.IsPlaying = p.Autoplay;
             PlayStateChanged?.Invoke(Bar.IsPlaying);
+ 
         }
 
         public string TakeScreenshot(long position = 0)

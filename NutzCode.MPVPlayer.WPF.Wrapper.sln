@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NutzCode.MPVPlayer.WPF.Wrapper", "NutzCode.MPVPlayer.WPF.Wrapper.csproj", "{423508FA-BC96-454A-AD46-7F38B6B1D0D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NutzCode.MPVPlayer.WPF.Wrapper", "NutzCode.MPVPlayer.WPF.Wrapper.csproj", "{88D69C8E-A6BF-4427-9DD4-022F74AEFCCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{423508FA-BC96-454A-AD46-7F38B6B1D0D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{423508FA-BC96-454A-AD46-7F38B6B1D0D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{423508FA-BC96-454A-AD46-7F38B6B1D0D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{423508FA-BC96-454A-AD46-7F38B6B1D0D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88D69C8E-A6BF-4427-9DD4-022F74AEFCCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88D69C8E-A6BF-4427-9DD4-022F74AEFCCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88D69C8E-A6BF-4427-9DD4-022F74AEFCCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88D69C8E-A6BF-4427-9DD4-022F74AEFCCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
